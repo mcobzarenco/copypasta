@@ -75,3 +75,15 @@ pub type ClipboardContext = nop_clipboard::NopClipboardContext; // TODO: impleme
     target_os = "emscripten"
 )))]
 pub type ClipboardContext = nop_clipboard::NopClipboardContext;
+
+#[cfg(test)]
+mod tests {
+    use super::{ClipboardContext, ClipboardProvider};
+
+    #[test]
+    fn test_roundtrip() {
+        let mut clipboard = ClipboardContext::new().unwrap();
+        clipboard.set_contents("some string".to_owned()).unwrap();
+        assert!(clipboard.get_contents().unwrap() == "some string");
+    }
+}

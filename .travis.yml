@@ -5,6 +5,9 @@ addons:
     packages:
     - libxcb-xfixes0-dev
 
+services:
+  - xvfb
+
 git:
   depth: 1
 
